@@ -1,565 +1,365 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torke UY - Ropa Urbana</title>
-    <style>
-        /* Reset y configuraciones generales */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* Reset y configuraciones generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            transition: all 0.3s ease;
-        }
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 5%;
+    transition: all 0.3s ease;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
 
-        .nav-menu a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            position: relative;
-        }
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
 
-        .nav-menu a:hover {
-            color: #4ecdc4;
-        }
+.nav-menu a:hover {
+    color: #4ecdc4;
+}
 
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: width 0.3s ease;
-        }
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    transition: width 0.3s ease;
+}
 
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
+.nav-menu a:hover::after {
+    width: 100%;
+}
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
+}
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-content {
-            z-index: 2;
-            animation: fadeInUp 1s ease;
-        }
+.hero-content {
+    z-index: 2;
+    animation: fadeInUp 1s ease;
+}
 
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+.cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
 
-        /* Container general */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* Container general */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #333;
-            position: relative;
-        }
+/* Section Title */
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #333;
+    position: relative;
+}
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-        /* Products Section */
-        .products {
-            padding: 100px 5%;
-            background: #f8f9fa;
-        }
+/* Products Section */
+.products {
+    padding: 100px 5%;
+    background: #f8f9fa;
+}
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
 
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
 
-        .product-image {
-            height: 250px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
+.product-image {
+    height: 250px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
 
-        .product-info {
-            padding: 1.5rem;
-        }
+.product-info {
+    padding: 1.5rem;
+}
 
-        .product-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
+.product-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
 
-        .product-price {
-            font-size: 1.5rem;
-            color: #ff6b6b;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
+.product-price {
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
 
-        .product-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
+.product-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
 
-        .add-to-cart {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.add-to-cart {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .add-to-cart:hover {
-            transform: scale(1.05);
-        }
+.add-to-cart:hover {
+    transform: scale(1.05);
+}
 
-        /* About Section */
-        .about {
-            padding: 100px 5%;
-            background: #fff;
-        }
+/* About Section */
+.about {
+    padding: 100px 5%;
+    background: #fff;
+}
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
 
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
 
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
 
-        .about-image {
-            height: 400px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-        }
+.about-image {
+    height: 400px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.3rem;
+}
 
-        /* Footer */
-        .footer {
-            background: #333;
-            color: white;
-            padding: 50px 5% 20px;
-        }
+/* Footer */
+.footer {
+    background: #333;
+    color: white;
+    padding: 50px 5% 20px;
+}
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
 
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #4ecdc4;
-        }
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: #4ecdc4;
+}
 
-        .footer-section p, 
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            line-height: 1.8;
-        }
+.footer-section p, 
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    line-height: 1.8;
+}
 
-        .footer-section a:hover {
-            color: #4ecdc4;
-        }
+.footer-section a:hover {
+    color: #4ecdc4;
+}
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #555;
-            color: #999;
-        }
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #555;
+    color: #999;
+}
 
-        /* Animaciones */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background: rgba(0, 0, 0, 0.9);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                padding: 2rem 0;
-            }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+    }
 
-            .nav-menu.active {
-                left: 0;
-            }
+    .nav-menu.active {
+        left: 0;
+    }
 
-            .menu-toggle {
-                display: flex;
-            }
+    .menu-toggle {
+        display: flex;
+    }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
 
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">TORKE UY</a>
-            <ul class="nav-menu">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>TORKE UY</h1>
-            <p>Ropa urbana que define tu estilo</p>
-            <a href="#productos" class="cta-button">Ver Colección</a>
-        </div>
-    </section>
-
-    <section class="products" id="productos">
-        <div class="container">
-            <h2 class="section-title">Nuestros Productos</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">Imagen del Producto</div>
-                    <div class="product-info">
-                        <h3 class="product-title">Camiseta Urbana</h3>
-                        <p class="product-price">$1,200</p>
-                        <p class="product-description">Camiseta de alta calidad con diseño urbano moderno</p>
-                        <button class="add-to-cart">Agregar al Carrito</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">Imagen del Producto</div>
-                    <div class="product-info">
-                        <h3 class="product-title">Hoodie Street</h3>
-                        <p class="product-price">$2,500</p>
-                        <p class="product-description">Hoodie cómodo perfecto para el estilo street</p>
-                        <button class="add-to-cart">Agregar al Carrito</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">Imagen del Producto</div>
-                    <div class="product-info">
-                        <h3 class="product-title">Pantalón Cargo</h3>
-                        <p class="product-price">$3,000</p>
-                        <p class="product-description">Pantalón cargo con múltiples bolsillos funcionales</p>
-                        <button class="add-to-cart">Agregar al Carrito</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">Imagen del Producto</div>
-                    <div class="product-info">
-                        <h3 class="product-title">Gorra Snapback</h3>
-                        <p class="product-price">$800</p>
-                        <p class="product-description">Gorra snapback con logo bordado de calidad premium</p>
-                        <button class="add-to-cart">Agregar al Carrito</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">Imagen del Producto</div>
-                    <div class="product-info">
-                        <h3 class="product-title">Zapatillas Urban</h3>
-                        <p class="product-price">$4,500</p>
-                        <p class="product-description">Zapatillas urbanas con diseño exclusivo y máxima comodidad</p>
-                        <button class="add-to-cart">Agregar al Carrito</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">Imagen del Producto</div>
-                    <div class="product-info">
-                        <h3 class="product-title">Chaqueta Bomber</h3>
-                        <p class="product-price">$3,800</p>
-                        <p class="product-description">Chaqueta bomber con detalles únicos para destacar</p>
-                        <button class="add-to-cart">Agregar al Carrito</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="about" id="nosotros">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Sobre Torke UY</h2>
-                    <p>Somos una marca uruguaya que nació de la pasión por la moda urbana y el streetwear. Creemos que la ropa es una forma de expresión personal y queremos que cada pieza que uses cuente tu historia.</p>
-                    <p>Nuestros diseños combinan la estética urbana internacional con la autenticidad local, creando prendas únicas que reflejan la cultura street de Uruguay.</p>
-                    <p>Trabajamos con materiales de alta calidad y procesos de producción responsables, porque creemos en un futuro sostenible para la moda.</p>
-                </div>
-                <div class="about-image">
-                    Imagen de la Marca
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer" id="contacto">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Contacto</h3>
-                    <p>📍 Montevideo, Uruguay</p>
-                    <p>📞 +598 99 123 456</p>
-                    <p>✉️ info@torkeuy.com</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Enlaces</h3>
-                    <p><a href="#inicio">Inicio</a></p>
-                    <p><a href="#productos">Productos</a></p>
-                    <p><a href="#nosotros">Nosotros</a></p>
-                    <p><a href="#contacto">Contacto</a></p>
-                </div>
-                <div class="footer-section">
-                    <h3>Redes Sociales</h3>
-                    <p><a href="#">Instagram</a></p>
-                    <p><a href="#">Facebook</a></p>
-                    <p><a href="#">TikTok</a></p>
-                    <p><a href="#">Twitter</a></p>
-                </div>
-                <div class="footer-section">
-                    <h3>Información</h3>
-                    <p><a href="#">Términos y Condiciones</a></p>
-                    <p><a href="#">Política de Privacidad</a></p>
-                    <p><a href="#">Envíos y Devoluciones</a></p>
-                    <p><a href="#">FAQ</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Torke UY. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 70;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Add to cart functionality
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                const productTitle = this.parentElement.querySelector('.product-title').textContent;
-                alert(`${productTitle} agregado al carrito!`);
-                
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
-            }
-        });
-    </script>
-</body>
-</html>
+    .section-title {
+        font-size: 2rem;
+    }
+}
